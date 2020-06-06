@@ -13,7 +13,7 @@ static const int N = 9;
 int gui(int qdoku[N][N], int doku[N][N])
 {
 
-	InitWindow(SCREEN_SIZE, SCREEN_SIZE + UI_BUFFER, "Sudoku Solver");
+	InitWindow(SCREEN_SIZE, SCREEN_SIZE + UI_BUFFER, "Sudoku Game");
 	SetTargetFPS(60);
 	
 	Color empty_color = WHITE;
