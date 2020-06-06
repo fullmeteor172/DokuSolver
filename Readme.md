@@ -1,4 +1,4 @@
-#Sudoku Sover + has a gui too!
+# H1 Sudoku Sover + has a gui too!
 Used this slick library to make it happen - https://github.com/raysan5/raylib
 
 ##Things to do:
