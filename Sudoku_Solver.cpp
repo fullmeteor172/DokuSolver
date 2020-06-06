@@ -1,8 +1,7 @@
+// This one works for all sudokus, uses back tracking. Sorry about the shit time complexity again
+
 #include<iostream>
 #include<windows.h>
-#include<conio.h>
-
-
 
 using namespace std;
 
