@@ -1,16 +1,7 @@
-/*
- _____ _   _______ _____ _   ___   _   _____  _____ _     _   _ ___________
-/  ___| | | |  _  \  _  | | / / | | | /  ___||  _  | |   | | | |  ___| ___ \
-\ `--.| | | | | | | | | | |/ /| | | | \ `--. | | | | |   | | | | |__ | |_/ /
- `--. \ | | | | | | | | |    \| | | |  `--. \| | | | |   | | | |  __||    /
-/\__/ / |_| | |/ /\ \_/ / |\  \ |_| | /\__/ /\ \_/ / |___\ \_/ / |___| |\ \
-\____/ \___/|___/  \___/\_| \_/\___/  \____/  \___/\_____/\___/\____/\_| \_|
+//If somethings broken let me know at u/fullmeteor172  ^.^
 
-By Dhruv Jha
-If somethings broken let me know at u/fullmeteor172  ^.^
-*/
-
-
+// NOTE: THIS IS A SHITTY SOLVER, WORKS ONLY FOR SUDOKUS THAT ARE EASY AF.
+//p.s sorry for the nested fors like everywhere
 
 #include<iostream>
 using namespace std;
