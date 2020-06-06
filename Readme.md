@@ -1,7 +1,7 @@
-# H1 Sudoku Sover + has a gui too!
+# H1 C++ Sudoku Sover + has a game gui too!
 Used this slick library to make it happen - https://github.com/raysan5/raylib
 
-##Things to do:
+## H2 Things to do:
 - Optimize all that sloppy nested for code and use vectors
 - Make the gui visualy show the backtracking process
 - Make the game parse a file with strings of boards to questions
