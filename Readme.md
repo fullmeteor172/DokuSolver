@@ -9,6 +9,7 @@ Used this slick library to make it happen - https://github.com/raysan5/raylib
 - Need to add a Menu screen
 - Need to add a You won screen
 - Need to add make use of that screen scaling var for 4k monitors
+- Need to fix the check() with a better system for 3x3
 - Go to bed, I never seem to be able to sleep on time...
 
 ### Screen Shots:
