@@ -1,14 +1,16 @@
 #include"raylib.h"
 #include<iostream>
+#include<fstream>
+#include<stdlib.h>
+#include<time.h>
 
 using namespace std;
 
-static const int APP_SCALE = 2; //Increase if too small on your display
+static const int APP_SCALE = 3; //Increase if too small on your display
 
 static const int SCREEN_SIZE = APP_SCALE * 180;
 static const int UI_BUFFER = SCREEN_SIZE/6;
 static const int N = 9;
-
 
 int gui(int qdoku[N][N], int doku[N][N])
 {
@@ -41,12 +43,13 @@ int gui(int qdoku[N][N], int doku[N][N])
 	int key_input = NULL;
 
 	int no_mistakes = NULL;
+	int time = NULL;
 
 	while (!WindowShouldClose())
 	{
 		BeginDrawing();
 		ClearBackground(empty_color);
-
+		time = (int)GetTime();
 		//Drawing grid and centering numbers
 		for (int i = 0; i < N; i++)
 		{
@@ -114,7 +117,11 @@ int gui(int qdoku[N][N], int doku[N][N])
 			//Checking if the input is valid and making changes if it is
 			if (doku[mouse_y / rect_size][mouse_x / rect_size] == key_input)
 				qdoku[mouse_y / rect_size][mouse_x / rect_size] = key_input;
-			
+
+			/*
+			if (key_input == 64 || key_input == 32)
+				time = time-(int)GetTime();
+			*/
 			else if (immediate_input != 0 && doku[mouse_y / rect_size][mouse_x / rect_size] != key_input)
 				no_mistakes++;
 			
@@ -129,7 +136,7 @@ int gui(int qdoku[N][N], int doku[N][N])
 		}
 
 		//Timer
-		DrawText(TextFormat("Time Elapsed: %d", (int)GetTime()), rect_size/2, SCREEN_SIZE + UI_BUFFER / 2 - font_size / 2, font_size, big_outline);
+		DrawText(TextFormat("Time Elapsed: %d", time), rect_size/2, SCREEN_SIZE + UI_BUFFER / 2 - font_size / 2, font_size, big_outline);
 		
 		//Mistakes
 		DrawText(TextFormat("%d",no_mistakes), SCREEN_SIZE-rect_size/2- MeasureText(TextFormat("%i", no_mistakes), font_size) , SCREEN_SIZE + UI_BUFFER / 2 - font_size / 2, font_size, selected_input_color);
@@ -273,36 +280,30 @@ bool solver(int doku[N][N])
 
 int main()
 {
-// File parser thing comes here
-	int qdoku[N][N] =
+	int no_num = NULL;
+	char ch;
+	ifstream qbase;
+	qbase.open("big_grids.txt");
+	while (qbase >> ch) ++no_num;
+	qbase.clear();
+	srand(time(0));
+	int board_at = 81 * (rand() % (no_num / 81));
+	qbase.seekg(board_at);
+	int flag = 0;
+
+	int qdoku[N][N], doku[N][N];
+
+	while (flag!=81)
 	{
-		// 0 1 2  3 4 5  6 7 8 <--x
-		  {0,0,0, 0,0,0, 0,0,0}, // 0 y
-		  {0,0,0, 0,0,0, 0,5,1}, // 1 |
-		  {0,0,0, 0,0,0, 0,7,3}, // 2 v
-		  {3,9,1, 7,0,0, 0,6,8}, // 3
-		  {0,0,0, 0,1,0, 0,4,2}, // 4
-		  {4,0,0, 0,8,6, 0,0,0}, // 5
-		  {9,4,7, 0,3,0, 0,0,0}, // 6
-		  {0,1,6, 0,9,5, 0,3,0}, // 7
-		  {8,0,0, 0,6,7, 0,0,9}  // 8
-	};
-  
-  int doku[N][N] =
-	{
-		// 0 1 2  3 4 5  6 7 8 <--x
-		  {0,0,0, 0,0,0, 0,0,0}, // 0 y
-		  {0,0,0, 0,0,0, 0,5,1}, // 1 |
-		  {0,0,0, 0,0,0, 0,7,3}, // 2 v
-		  {3,9,1, 7,0,0, 0,6,8}, // 3
-		  {0,0,0, 0,1,0, 0,4,2}, // 4
-		  {4,0,0, 0,8,6, 0,0,0}, // 5
-		  {9,4,7, 0,3,0, 0,0,0}, // 6
-		  {0,1,6, 0,9,5, 0,3,0}, // 7
-		  {8,0,0, 0,6,7, 0,0,9}  // 8
-	};
-	solver(doku);
-	//print(doku);
-	gui(qdoku,doku);
+		qbase >> ch;
+		qdoku[(flag/9)][(flag % 9)]=(int)ch-48;
+		doku[(flag / 9)][(flag % 9)] = (int)ch - 48;
+		++flag;
+	}
+	
+	solver(qdoku);
+	print(qdoku);
+	gui(doku,qdoku);
+	qbase.close();
 	return 0;
 }
