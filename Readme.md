@@ -4,7 +4,7 @@ Used this slick library to make it happen - https://github.com/raysan5/raylib
 ## Things to do:
 - Optimize all that sloppy nested for code and use vectors
 - Make the gui visualy show the backtracking process
-- Make the game parse a file with strings of boards to questions
+- <s>Make the game parse a file with strings of boards to questions</s>
 - Figure out how to avoid so much code repeating in the gui() funtion
 - Need to add a Menu screen
 - Need to add a You won screen
